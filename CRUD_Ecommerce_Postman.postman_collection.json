@@ -1,0 +1,162 @@
+{
+  "info": {
+    "name": "CRUD E-commerce - API Local",
+    "description": "Coleção para testar os endpoints da API local de produtos. Execute em ordem: GET lista, POST, GET por ID, PUT e DELETE. O POST salva automaticamente o ID criado na variável productId.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string"
+    },
+    {
+      "key": "productId",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "1 - Listar produtos (GET)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/products",
+        "description": "Lista todos os produtos."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status 200', function () { pm.response.to.have.status(200); });",
+              "pm.test('A resposta é uma lista', function () { pm.expect(pm.response.json()).to.be.an('array'); });"
+            ]
+          }
+        }
+      ],
+      "response": []
+    },
+    {
+      "name": "2 - Cadastrar produto (POST)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nome\": \"Produto de teste Postman\",\n  \"descricao\": \"Produto criado para validar a API\",\n  \"categoria\": \"Jogos\",\n  \"preco\": 199.9,\n  \"imagem\": \"\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{baseUrl}}/api/products",
+        "description": "Cadastra um produto de teste e salva automaticamente o ID retornado em {{productId}}."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status 201 - criado', function () { pm.response.to.have.status(201); });",
+              "const produto = pm.response.json();",
+              "pm.test('A resposta contém o ID do produto', function () { pm.expect(produto.id).to.exist; });",
+              "pm.collectionVariables.set('productId', String(produto.id));"
+            ]
+          }
+        }
+      ],
+      "response": []
+    },
+    {
+      "name": "3 - Buscar produto cadastrado (GET por ID)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/products/{{productId}}",
+        "description": "Consulta o produto criado pelo POST."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status 200', function () { pm.response.to.have.status(200); });",
+              "const produto = pm.response.json();",
+              "pm.test('O ID retornado corresponde ao ID criado', function () { pm.expect(String(produto.id)).to.eql(pm.collectionVariables.get('productId')); });"
+            ]
+          }
+        }
+      ],
+      "response": []
+    },
+    {
+      "name": "4 - Atualizar produto (PUT)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nome\": \"Produto de teste atualizado\",\n  \"descricao\": \"Produto atualizado para validar o PUT\",\n  \"categoria\": \"Eletrônicos\",\n  \"preco\": 249.9,\n  \"imagem\": \"\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{baseUrl}}/api/products/{{productId}}",
+        "description": "Atualiza o produto criado pelo POST."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status 200 - atualizado', function () { pm.response.to.have.status(200); });",
+              "const produto = pm.response.json();",
+              "pm.test('O nome foi atualizado', function () { pm.expect(produto.nome).to.eql('Produto de teste atualizado'); });"
+            ]
+          }
+        }
+      ],
+      "response": []
+    },
+    {
+      "name": "5 - Excluir produto (DELETE)",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": "{{baseUrl}}/api/products/{{productId}}",
+        "description": "Exclui somente o produto criado por esta coleção."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status 204 - excluído sem conteúdo', function () { pm.response.to.have.status(204); });"
+            ]
+          }
+        }
+      ],
+      "response": []
+    }
+  ]
+}
