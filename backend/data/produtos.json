@@ -1,18 +1,10 @@
 [
   {
-    "id": 1,
-    "nome": "Notebook Gamer",
-    "descricao": "Notebook para jogos e produtividade com excelente desempenho.",
-    "categoria": "Eletrônicos",
-    "preco": 5299.9,
-    "imagem": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=600&q=80"
-  },
-  {
     "id": 2,
-    "nome": "PlayStation 5",
+    "nome": "PlayStation ",
     "descricao": "Console de videogame de última geração com gráficos avançados.",
     "categoria": "Jogos",
-    "preco": 4199.9,
+    "preco": 4199999.9,
     "imagem": "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?auto=format&fit=crop&w=600&q=80"
   },
   {
@@ -40,11 +32,11 @@
     "imagem": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=600&q=80"
   },
   {
-    "id": 6,
-    "nome": "Notebook Gamer 1788570570146",
-    "descricao": "Notebook para jogos e desenvolvimento.",
+    "id": 7,
+    "nome": "Notebook gamer",
+    "descricao": "Novo e com design elegante",
     "categoria": "Eletrônicos",
-    "preco": 3500,
-    "imagem": "https://via.placeholder.com/600x400"
+    "preco": 5199.9,
+    "imagem": ""
   }
 ]

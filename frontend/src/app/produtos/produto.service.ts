@@ -12,29 +12,23 @@ export class ProdutoService {
 
   constructor(private readonly http: HttpClient) { }
 
-  listar(): Observable<Produto[]> {
-    // TODO: implementar GET /api/products
-    //return of([]);
-    return this.http.get<Produto[]>(this.apiUrl);
-  }
+  listar() {
+  return this.http.get<Produto[]>(this.apiUrl);
+}
 
-  buscarPorId(id: number): Observable<Produto> {
-    // TODO: implementar GET /api/products/:id
-    return this.http.get<Produto>(`${this.apiUrl}/${id}`); // Retorno vazio temporário para não quebrar a compilação
-  }
+buscarPorId(id: number) {
+  return this.http.get<Produto>(`${this.apiUrl}/${id}`);
+}
 
-  cadastrar(produto: Produto): Observable<Produto> {
-    // TODO: implementar POST /api/products
-    return this.http.post<Produto>(this.apiUrl, produto);
-  }
+cadastrar(produto: Produto) {
+  return this.http.post<Produto>(this.apiUrl, produto);
+}
 
-  atualizar(id: number, produto: Produto): Observable<Produto> {
-    // TODO: implementar PUT /api/products/:id
-    return this.http.put<Produto>(`${this.apiUrl}/${id}`, produto); // Retorno temporário para não quebrar a compilação
-  }
+atualizar(id: number, produto: Produto) {
+  return this.http.put<Produto>(`${this.apiUrl}/${id}`, produto);
+}
 
-  excluir(id: number): Observable<void> {
-    // TODO: implementar DELETE /api/products/:id
-    return this.http.delete<void>(`${this.apiUrl}/${id}`); // Retorno temporário para não quebrar a compilação
-  }
+excluir(id: number) {
+  return this.http.delete<void>(`${this.apiUrl}/${id}`);
+}
 }
