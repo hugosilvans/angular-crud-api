@@ -82,3 +82,15 @@ Os arquivos de teste estão incluídos como parte do projeto; sua presença não
 ## Origem e atribuição
 
 Este repositório foi iniciado como fork de [HevelinFR/angular-crud-api](https://github.com/HevelinFR/angular-crud-api). A base e o histórico incluem contribuições dos autores do projeto de origem. As alterações e a organização mantidas nesta conta podem ser consultadas no histórico de commits. Os créditos e os avisos de licença existentes devem ser preservados.
+
+## Organização e testes da API
+
+- `backend/src/server.js` apenas inicia o servidor; `app.js` reúne o contrato HTTP e a validação.
+- `backend/src/data/produtos-store.js` mantém a leitura e a gravação do JSON. Falhas de disco chegam à resposta HTTP como erro, sem falso sucesso.
+- Em `backend`, execute `npm test` para testar o CRUD e uma falha de gravação simulada.
+- A persistência JSON é didática e destinada a um único processo. Uma implantação com vários processos deve adotar banco de dados e controle de concorrência.
+- A automação Selenium retorna código de saída de falha quando não encontra o produto esperado. Requer Chrome, frontend e backend locais.
+
+## Guia do código
+
+Consulte [GUIA_CODIGO.md](GUIA_CODIGO.md) para localizar os módulos, entender as convenções e estudar as alterações.

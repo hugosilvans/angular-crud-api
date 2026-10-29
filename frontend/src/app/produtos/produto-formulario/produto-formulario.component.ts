@@ -1,22 +1,17 @@
-import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit, ChangeDetectorRef } from "@angular/core";
-import {
-  FormBuilder,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from "@angular/forms";
-import { ActivatedRoute, Router, RouterLink } from "@angular/router";
-import { finalize } from "rxjs/operators";
+import { CommonModule } from '@angular/common';
+import { Component, inject, OnInit, ChangeDetectorRef } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { finalize } from 'rxjs/operators';
 
-import { CabecalhoComponent } from "../../compartilhado/cabecalho/cabecalho.component";
-import { CarregamentoComponent } from "../../compartilhado/carregamento/carregamento.component";
-import { MensagemComponent } from "../../compartilhado/mensagem/mensagem.component";
-import { Produto } from "../produto.model";
-import { ProdutoService } from "../produto.service";
+import { CabecalhoComponent } from '../../compartilhado/cabecalho/cabecalho.component';
+import { CarregamentoComponent } from '../../compartilhado/carregamento/carregamento.component';
+import { MensagemComponent } from '../../compartilhado/mensagem/mensagem.component';
+import { Produto } from '../produto.model';
+import { ProdutoService } from '../produto.service';
 
 @Component({
-  selector: "app-produto-formulario",
+  selector: 'app-produto-formulario',
   standalone: true,
   imports: [
     CommonModule,
@@ -26,7 +21,7 @@ import { ProdutoService } from "../produto.service";
     MensagemComponent,
     RouterLink,
   ],
-  templateUrl: "./produto-formulario.component.html",
+  templateUrl: './produto-formulario.component.html',
 })
 export class ProdutoFormularioComponent implements OnInit {
   private readonly produtoService = inject(ProdutoService);
@@ -36,24 +31,24 @@ export class ProdutoFormularioComponent implements OnInit {
   private readonly cdr = inject(ChangeDetectorRef);
 
   protected carregando = false;
-  protected mensagemErro = "";
-  protected mensagemSucesso = "";
+  protected mensagemErro = '';
+  protected mensagemSucesso = '';
 
   protected produtoForm: FormGroup;
   protected editandoId: number | null = null;
 
   constructor() {
     this.produtoForm = this.fb.group({
-      nome: ["", Validators.required],
-      descricao: ["", Validators.required],
-      categoria: ["", Validators.required],
+      nome: ['', Validators.required],
+      descricao: ['', Validators.required],
+      categoria: ['', Validators.required],
       preco: [null, [Validators.required, Validators.min(0.01)]],
-      imagem: [""],
+      imagem: [''],
     });
   }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get("id");
+    const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.editandoId = parseInt(id, 10);
       this.carregarProduto();
@@ -64,7 +59,7 @@ export class ProdutoFormularioComponent implements OnInit {
     if (!this.editandoId) return;
 
     this.carregando = true;
-    this.mensagemErro = "";
+    this.mensagemErro = '';
 
     this.produtoService
       .buscarPorId(this.editandoId)
@@ -85,8 +80,7 @@ export class ProdutoFormularioComponent implements OnInit {
           });
         },
         error: () => {
-          this.mensagemErro =
-            "Não foi possível carregar os dados do produto para edição.";
+          this.mensagemErro = 'Não foi possível carregar os dados do produto para edição.';
         },
       });
   }
@@ -95,8 +89,8 @@ export class ProdutoFormularioComponent implements OnInit {
     if (this.produtoForm.invalid) return;
 
     this.carregando = true;
-    this.mensagemErro = "";
-    this.mensagemSucesso = "";
+    this.mensagemErro = '';
+    this.mensagemSucesso = '';
 
     const produtoData: Produto = this.produtoForm.value;
 
@@ -111,11 +105,11 @@ export class ProdutoFormularioComponent implements OnInit {
         )
         .subscribe({
           next: () => {
-            this.mensagemSucesso = "Produto atualizado com sucesso!";
-            setTimeout(() => this.router.navigate(["/produtos"]), 1500);
+            this.mensagemSucesso = 'Produto atualizado com sucesso!';
+            setTimeout(() => this.router.navigate(['/produtos']), 1500);
           },
           error: () => {
-            this.mensagemErro = "Erro ao atualizar o produto.";
+            this.mensagemErro = 'Erro ao atualizar o produto.';
           },
         });
     } else {
@@ -129,11 +123,11 @@ export class ProdutoFormularioComponent implements OnInit {
         )
         .subscribe({
           next: () => {
-            this.mensagemSucesso = "Produto cadastrado com sucesso!";
-            setTimeout(() => this.router.navigate(["/produtos"]), 1500);
+            this.mensagemSucesso = 'Produto cadastrado com sucesso!';
+            setTimeout(() => this.router.navigate(['/produtos']), 1500);
           },
           error: () => {
-            this.mensagemErro = "Erro ao cadastrar o produto.";
+            this.mensagemErro = 'Erro ao cadastrar o produto.';
           },
         });
     }

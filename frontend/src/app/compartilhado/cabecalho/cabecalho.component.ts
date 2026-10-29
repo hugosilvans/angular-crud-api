@@ -8,5 +8,4 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   imports: [CommonModule, RouterLink, RouterLinkActive],
   templateUrl: './cabecalho.component.html',
 })
-export class CabecalhoComponent {
-}
+export class CabecalhoComponent {}

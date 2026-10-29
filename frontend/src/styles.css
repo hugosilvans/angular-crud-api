@@ -14,8 +14,7 @@ body {
   margin: 0;
   min-height: 100vh;
   background:
-    radial-gradient(circle at top left, rgba(37, 99, 235, 0.08), transparent 28%),
-    var(--bg-soft);
+    radial-gradient(circle at top left, rgba(37, 99, 235, 0.08), transparent 28%), var(--bg-soft);
   color: #1f2937;
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -47,4 +46,3 @@ body {
 .produto-imagem {
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
-
