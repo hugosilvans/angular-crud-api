@@ -78,3 +78,7 @@ npm run build
 ```
 
 Os arquivos de teste estão incluídos como parte do projeto; sua presença não representa uma execução bem-sucedida dos testes.
+
+## Origem e atribuição
+
+Este repositório foi iniciado como fork de [HevelinFR/angular-crud-api](https://github.com/HevelinFR/angular-crud-api). A base e o histórico incluem contribuições dos autores do projeto de origem. As alterações e a organização mantidas nesta conta podem ser consultadas no histórico de commits. Os créditos e os avisos de licença existentes devem ser preservados.
