@@ -90,7 +90,3 @@ Este repositório foi iniciado como fork de [HevelinFR/angular-crud-api](https:/
 - Em `backend`, execute `npm test` para testar o CRUD e uma falha de gravação simulada.
 - A persistência JSON é didática e destinada a um único processo. Uma implantação com vários processos deve adotar banco de dados e controle de concorrência.
 - A automação Selenium retorna código de saída de falha quando não encontra o produto esperado. Requer Chrome, frontend e backend locais.
-
-## Guia do código
-
-Consulte [GUIA_CODIGO.md](GUIA_CODIGO.md) para localizar os módulos, entender as convenções e estudar as alterações.
